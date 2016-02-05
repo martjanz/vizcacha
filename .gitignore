@@ -1,0 +1,7 @@
+.vagrant
+*.egg-info
+*.egg
+*.pyc
+build
+/venv
+tmp
