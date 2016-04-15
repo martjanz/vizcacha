@@ -8,10 +8,10 @@
 import scrapy
 
 class DiscoArticle(scrapy.Item):
-    id_disco = scrapy.Field()
+    internal_id = scrapy.Field()
     name = scrapy.Field()
     price = scrapy.Field()
     unit_price = scrapy.Field()
-    parents = scrapy.Field()
+    categories = scrapy.Field()
     oferta = scrapy.Field()
     pass

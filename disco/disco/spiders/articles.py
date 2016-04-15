@@ -7,7 +7,7 @@ import pickle   # Serialization (stdlib)
 from disco.items import DiscoArticle
 
 class ArticlesSpider(scrapy.Spider):
-    name = "articles"
+    name = "disco_articles"
     allowed_domains = ["www3.discovirtual.com.ar"]
     start_urls = (
         'https://www3.discovirtual.com.ar/_UserControls/JpegImage.aspx',
@@ -158,12 +158,12 @@ class ArticlesSpider(scrapy.Spider):
                 .xpath('td/img/@title[contains(.,"oferta")]')\
                 .extract_first()
 
-            article['id_disco'] = articleId
+            article['internal_id'] = articleId
             article['name'] = articleName
             article['unit_price'] = unitPrice 
             article['price'] = articleSelector.xpath('td/text()').extract_first()\
                 .encode('utf-8') # Precio
-            article['parents'] = response.meta['parents'] # Categorías padre
+            article['categories'] = response.meta['parents'] # Categorías padre
 
             if (oferta is not None) and (len(oferta) > 0):
                 article['oferta'] = True
