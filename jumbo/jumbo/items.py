@@ -9,13 +9,13 @@ import scrapy
 
 
 class JumboArticle(scrapy.Item):
-	idJumbo = scrapy.Field()
-	descripcion = scrapy.Field()
-	precio = scrapy.Field()
-	precioUnitario = scrapy.Field()
-	unidadMedida = scrapy.Field()
-	marca = scrapy.Field()
-	tipo = scrapy.Field()
-	oferta = scrapy.Field()
-	pesable = scrapy.Field()
+	internal_id = scrapy.Field()
+	name = scrapy.Field()
+	price = scrapy.Field()
+	unit_price = scrapy.Field()
+	measure_unit = scrapy.Field()
+	brand = scrapy.Field()
+	article_type = scrapy.Field()
+	promo = scrapy.Field()
+	weighable = scrapy.Field()
 	categories = scrapy.Field()

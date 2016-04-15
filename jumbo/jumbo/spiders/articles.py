@@ -53,7 +53,7 @@ class ArticlesSpider(scrapy.Spider):
 
         menu = json.loads(jsonString)
 
-        categories = self.parseCategoriesTree(menu['Menu'])
+        categories = self.parseCategoriesTree(menu)
 
         return self.traverseCategoriesTree(categories)
 
@@ -146,15 +146,15 @@ class ArticlesSpider(scrapy.Spider):
     def parseArticle(self, article, categories):
         item = JumboArticle()
 
-        item['idJumbo'] = article['IdArticulo']
-        item['descripcion'] = article['DescripcionArticulo']
-        item['precio'] = article['Precio']
-        item['precioUnitario'] = article['precioUnidad_0']
-        item['unidadMedida'] = article['precioUnidad_1']
-        item['marca'] = article['Grupo_Marca']
-        item['tipo'] = article['Grupo_Tipo']
-        item['oferta'] = article['Articulo_Oferta']
-        item['pesable'] = article['Pesable']
+        item['internal_id'] = article['IdArticulo']
+        item['name'] = article['DescripcionArticulo']
+        item['price'] = article['Precio']
+        item['unit_price'] = article['precioUnidad_0']
+        item['measure_unit'] = article['precioUnidad_1']
+        item['brand'] = article['Grupo_Marca']
+        item['article_type'] = article['Grupo_Tipo']
+        item['promo'] = article['Articulo_Oferta']
+        item['weighable'] = article['Pesable']
         item['categories'] = categories
 
         return item
