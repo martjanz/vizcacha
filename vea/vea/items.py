@@ -8,10 +8,10 @@
 import scrapy
 
 class VeaArticle(scrapy.Item):
-    id_vea = scrapy.Field()
+    internal_id = scrapy.Field()
     name = scrapy.Field()
     price = scrapy.Field()
     unit_price = scrapy.Field()
-    parents = scrapy.Field()
-    oferta = scrapy.Field()
+    categories = scrapy.Field()
+    promo = scrapy.Field()
     pass

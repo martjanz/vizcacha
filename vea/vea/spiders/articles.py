@@ -7,7 +7,7 @@ import pickle   # Serialization (stdlib)
 from vea.items import VeaArticle
 
 class ArticlesSpider(scrapy.Spider):
-    name = "articles"
+    name = "vea_articles"
     allowed_domains = ["www.veadigital.com.ar"]
     start_urls = (
         'https://www.veadigital.com.ar/_UserControls/JpegImage.aspx',
@@ -160,15 +160,15 @@ class ArticlesSpider(scrapy.Spider):
                 .xpath('td/img/@title[contains(.,"oferta")]')\
                 .extract_first()
 
-            article['id_vea'] = articleId
+            article['internal_id'] = articleId
             article['name'] = articleName
             article['unit_price'] = unitPrice 
             article['price'] = articleSelector.xpath('td/text()').extract_first()\
                 .encode('utf-8') # Precio
-            article['parents'] = response.meta['parents'] # Categorías padre
+            article['categories'] = response.meta['parents'] # Categorías padre
 
             if (oferta is not None) and (len(oferta) > 0):
-                article['oferta'] = True
+                article['promo'] = True
 
             yield article
 
