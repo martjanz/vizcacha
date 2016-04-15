@@ -8,7 +8,7 @@
 import scrapy
 
 class CotoArticle(scrapy.Item):
-    id_coto = scrapy.Field()
+    internal_id = scrapy.Field()
     name = scrapy.Field()
     price = scrapy.Field()
     unit_price = scrapy.Field()

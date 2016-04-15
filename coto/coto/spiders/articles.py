@@ -6,7 +6,7 @@ import re # Regex library
 from coto.items import CotoArticle
 
 class ArticlesSpider(scrapy.Spider):
-    name = "articles"
+    name = "coto_articles"
     allowed_domains = ["www.cotodigital3.com.ar"]
     start_urls = [
         "http://www.cotodigital3.com.ar/sitios/cdigi"
@@ -107,8 +107,8 @@ class ArticlesSpider(scrapy.Spider):
         xpathQuery = 'div/a/span[@class="atg_store_productTitle"]/span/text()'
         regex = '(\d+)'
 
-        item['id_coto'] = selector.xpath(xpathQuery).re(regex)
-        item['id_coto'] = item['id_coto'][0].strip()
+        item['internal_id'] = selector.xpath(xpathQuery).re(regex)
+        item['internal_id'] = item['internal_id'][0].strip()
 
         # Precio por unidad de medida
         xpathQuery = ('div/div/span[contains(@class, "unit")]/text()')
