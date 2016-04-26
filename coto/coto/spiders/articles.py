@@ -44,7 +44,10 @@ class ArticlesSpider(scrapy.Spider):
 
 
     def parse_articles_follow_next_page(self, response):
-        
+        print "DEBUG: parse_articles_follow_next_page"
+        print response.xpath('//div[@class="atg_store_refinementAncestorsLinks"]/'
+            'div[@class="atg_store_refinementAncestorsLinkCategory"]').extract()
+
         categories = []
 
         # 1st level category
@@ -88,15 +91,22 @@ class ArticlesSpider(scrapy.Spider):
         item['categories'] = categories
 
         # Nombre
-        xpathQuery = 'div/a/span[@class="atg_store_productTitle"]/text()'
+        xpathQuery = 'div/div/a/span[@class="atg_store_productTitle"]/text()'
         regex = '((?:(\w|\/|\.|\-|\:|\&)+\s{0,2})+)'
 
         item['name'] = selector.xpath(xpathQuery).re(regex)
+        print 'DEBUG: str(selector)'
+        print selector.xpath('div/div/a/span[@class="atg_store_productTitle"]/text()').extract()
+        print 'selector.xpath(xpathQuery).extract()'
+        print selector.xpath(xpathQuery).extract()
+
         item['name'] = item['name'][0].strip()
 
         # Precio
-        xpathQuery = ('div[@class="atg_store_productAddToCart"]/'
-            'div[@class="rightList"]/span[@class="atg_store_productPrice"][1]/'
+        xpathQuery = ('div[@class="rightList"]/'
+            'div[@class="atg_store_productAddToCart"]/'
+            'div[@class="info_discount"]/'
+            'span[@class="atg_store_productPrice"][1]/'
             'span[@class="atg_store_newPrice"]/text()')
         regex = '(\d+\.\d+)'
 
@@ -104,7 +114,7 @@ class ArticlesSpider(scrapy.Spider):
         item['price'] = item['price'][0].strip()
 
         # ID Coto
-        xpathQuery = 'div/a/span[@class="atg_store_productTitle"]/span/text()'
+        xpathQuery = 'div/div/a/span[@class="atg_store_productTitle"]/span/text()'
         regex = '(\d+)'
 
         item['internal_id'] = selector.xpath(xpathQuery).re(regex)
