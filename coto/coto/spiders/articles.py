@@ -44,10 +44,6 @@ class ArticlesSpider(scrapy.Spider):
 
 
     def parse_articles_follow_next_page(self, response):
-        print "DEBUG: parse_articles_follow_next_page"
-        print response.xpath('//div[@class="atg_store_refinementAncestorsLinks"]/'
-            'div[@class="atg_store_refinementAncestorsLinkCategory"]').extract()
-
         categories = []
 
         # 1st level category
@@ -95,11 +91,6 @@ class ArticlesSpider(scrapy.Spider):
         regex = '((?:(\w|\/|\.|\-|\:|\&)+\s{0,2})+)'
 
         item['name'] = selector.xpath(xpathQuery).re(regex)
-        print 'DEBUG: str(selector)'
-        print selector.xpath('div/div/a/span[@class="atg_store_productTitle"]/text()').extract()
-        print 'selector.xpath(xpathQuery).extract()'
-        print selector.xpath(xpathQuery).extract()
-
         item['name'] = item['name'][0].strip()
 
         # Precio
