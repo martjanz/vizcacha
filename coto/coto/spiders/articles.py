@@ -92,9 +92,6 @@ class ArticlesSpider(scrapy.Spider):
 
         regex = '((?:(\w|\/|\.|\-|\:|\&)+\s{0,2})+)'
 
-        print "DEBUG: selector.xpath(xpathQuery)"
-        print selector.xpath(xpathQuery)
-
         item['name'] = selector.xpath(xpathQuery).re(regex)
         item['name'] = item['name'][0].strip()
 
