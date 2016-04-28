@@ -9,7 +9,7 @@ class ArticlesSpider(scrapy.Spider):
     name = "coto_articles"
     allowed_domains = ["www.cotodigital3.com.ar"]
     start_urls = [
-        "http://www.cotodigital3.com.ar/sitios/cdigi"
+        "https://www.cotodigital3.com.ar/sitios/cdigi"
     ]
 
     def parse(self, response):        
@@ -87,8 +87,13 @@ class ArticlesSpider(scrapy.Spider):
         item['categories'] = categories
 
         # Nombre
-        xpathQuery = 'div/div/a/span[@class="atg_store_productTitle"]/text()'
+        xpathQuery = ('div/div/a/span[@class="atg_store_productTitle"]/'
+            'span[@class="span_productName"]/text()')
+
         regex = '((?:(\w|\/|\.|\-|\:|\&)+\s{0,2})+)'
+
+        print "DEBUG: selector.xpath(xpathQuery)"
+        print selector.xpath(xpathQuery)
 
         item['name'] = selector.xpath(xpathQuery).re(regex)
         item['name'] = item['name'][0].strip()
@@ -99,13 +104,16 @@ class ArticlesSpider(scrapy.Spider):
             'div[@class="info_discount"]/'
             'span[@class="atg_store_productPrice"][1]/'
             'span[@class="atg_store_newPrice"]/text()')
+
         regex = '(\d+\.\d+)'
 
         item['price'] = selector.xpath(xpathQuery).re(regex)
         item['price'] = item['price'][0].strip()
 
-        # ID Coto
-        xpathQuery = 'div/div/a/span[@class="atg_store_productTitle"]/span/text()'
+        # ID Coto (PLU)
+        xpathQuery = ('div/div/a/span[@class="atg_store_productTitle"]/'
+            'span[@class="span_codigoplu"]/text()')
+
         regex = '(\d+)'
 
         item['internal_id'] = selector.xpath(xpathQuery).re(regex)
