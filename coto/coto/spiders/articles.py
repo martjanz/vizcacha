@@ -87,8 +87,8 @@ class ArticlesSpider(scrapy.Spider):
         item['categories'] = categories
 
         # Nombre
-        xpathQuery = ('div/div/a/span[@class="atg_store_productTitle"]/'
-            'span[@class="span_productName"]/text()')
+        xpathQuery = ('div/div/span[@class="atg_store_productTitle"]/div/'
+            'span[@class="span_productName"]/div/div[@class="descrip_full"]/text()')
 
         regex = '((?:(\w|\/|\.|\-|\:|\&)+\s{0,2})+)'
 
@@ -108,7 +108,7 @@ class ArticlesSpider(scrapy.Spider):
         item['price'] = item['price'][0].strip()
 
         # ID Coto (PLU)
-        xpathQuery = ('div/div/a/span[@class="atg_store_productTitle"]/'
+        xpathQuery = ('div/div/span[@class="atg_store_productTitle"]/'
             'span[@class="span_codigoplu"]/text()')
 
         regex = '(\d+)'
