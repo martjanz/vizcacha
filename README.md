@@ -1,4 +1,4 @@
-# Scrapy Crawlers
+# Vizcacha
 
 Recolectores de precios de supermercados y otros catálogos usando
 [Scrapy](https://scrapy.org/) Framework.
@@ -42,7 +42,7 @@ Todos supermercados online, salvo donde se aclara.
 * Cloná este repositorio
 
   ```sh
-  git clone http://github.com/martjanz/scrawls
+  git clone http://github.com/martjanz/vizcacha
   ```
 
 * Entrá al directorio
