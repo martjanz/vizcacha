@@ -8,16 +8,16 @@ from disco.items import DiscoArticle
 
 class ArticlesSpider(scrapy.Spider):
     name = "disco_articles"
-    allowed_domains = ["www3.discovirtual.com.ar"]
+    allowed_domains = ["www.disco.com.ar"]
     start_urls = (
-        'https://www3.discovirtual.com.ar/_UserControls/JpegImage.aspx',
+        'https://www.disco.com.ar/_UserControls/JpegImage.aspx',
     )
 
 
     # Get articles list with their IDs
     #
     # Request structure
-    # curl 'https://www3.discovirtual.com.ar/Comprar/Menu.aspx?IdLocal=9119&IdTipoCompra=8&Fecha=20160118'
+    # curl 'https://www.disco.com.ar/Comprar/Menu.aspx?IdLocal=9119&IdTipoCompra=8&Fecha=20160118'
     #   method: POST
     #   -H 'Content-Type: application/json; charset=utf-8'
     #   -H 'Cookie: ASP.NET_SessionId=td1shuuvsyclls45buyjhri5;
@@ -27,11 +27,11 @@ class ArticlesSpider(scrapy.Spider):
         self.sessionID = match.group(0)
 
         yield scrapy.Request(
-            url = "https://www3.discovirtual.com.ar/Login/Invitado.aspx",
+            url = "https://www.disco.com.ar/Login/Invitado.aspx",
             method = 'GET',
             headers = {
-                'Referer': 'https://www3.discovirtual.com.ar/Login/PreHome.aspx',
-                'Host': 'www3.discovirtual.com.ar'
+                'Referer': 'https://www.disco.com.ar/Login/PreHome.aspx',
+                'Host': 'www.disco.com.ar'
             },
             cookies = {
                 'ASP.NET_SessionId': self.sessionID,
@@ -43,12 +43,12 @@ class ArticlesSpider(scrapy.Spider):
     def getCategoryTree(self, response):
 
         yield scrapy.Request(
-            url = ("https://www3.discovirtual.com.ar/Comprar/Menu.aspx"
+            url = ("https://www.disco.com.ar/Comprar/Menu.aspx"
                 "?IdLocal=9235&IdTipoCompra=4"),
             method = 'GET',
             headers = {
-                'Referer': 'https://www3.discovirtual.com.ar/Comprar/Home.aspx',
-                'Host': 'www3.discovirtual.com.ar'
+                'Referer': 'https://www.disco.com.ar/Comprar/Home.aspx',
+                'Host': 'www.disco.com.ar'
             },
             cookies = {
                 'ASP.NET_SessionId': self.sessionID,
@@ -102,13 +102,13 @@ class ArticlesSpider(scrapy.Spider):
                 str(category['id']).encode('utf-8') + '}'
 
             request = scrapy.Request(
-                url = ("https://www3.discovirtual.com.ar/ajaxpro/"
+                url = ("https://www.disco.com.ar/ajaxpro/"
                     "_MasterPages_Home"
                     ",DiviComprasWeb.ashx?method=MostrarGondola"),
                 method = 'POST',
                 headers = {
-                    'Referer': 'https://www3.discovirtual.com.ar/Comprar/Home.aspx',
-                    'Host': 'www3.discovirtual.com.ar',
+                    'Referer': 'https://www.disco.com.ar/Comprar/Home.aspx',
+                    'Host': 'www.disco.com.ar',
                     'X-AjaxPro-Method': 'MostrarGondola',
                     'Content-Type': ('application/x-www-form-urlencoded; '
                         'charset=UTF-8'),
@@ -191,13 +191,13 @@ class ArticlesSpider(scrapy.Spider):
                 '"idMenu":' + str(idMenu) + '}:""')
 
         request = scrapy.Request(
-            url = ("https://www3.discovirtual.com.ar/ajaxpro/"
+            url = ("https://www.disco.com.ar/ajaxpro/"
                 "_MasterPages_Home"
                 ",DiviComprasWeb.ashx?method=PecActualizar"),
             method = 'POST',
             headers = {
-                'Referer': 'https://www3.discovirtual.com.ar/Comprar/Home.aspx',
-                'Host': 'www3.discovirtual.com.ar',
+                'Referer': 'https://www.disco.com.ar/Comprar/Home.aspx',
+                'Host': 'www.disco.com.ar',
                 'X-AjaxPro-Method': 'PecActualizar',
                 'Content-Type': ('application/x-www-form-urlencoded; '
                     'charset=UTF-8'),

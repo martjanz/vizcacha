@@ -1,4 +1,3 @@
-.vagrant
 *.egg-info
 *.egg
 *.pyc
