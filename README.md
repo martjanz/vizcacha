@@ -1,10 +1,10 @@
-# Vizcacha
+# Vizcacha
 
 Recolectores de precios de supermercados y otros catálogos usando
 [Scrapy](https://scrapy.org/) Framework.
 
 
-## Primero
+## Primero
 Salvo el de Walmart, el resto de los scrapers estaban funcionando al menos hasta
 mediados de 2016. Dado que los scrapers dependen directamente de la estructura
 del sitio web posiblemente ahora (casi un año después) no funcionen correctamente.
@@ -13,7 +13,7 @@ Cuando vayas a ejecutar cada crawler chequeá antes su correspondiente `settings
 donde se determinan los límites de conexiones simultáneas, cantidad de requests
 por segundo, etc. Un request por segundo es una buena medida. Más que eso es vicio.
 
-## Crawlers
+## Crawlers
 
 Todos supermercados online, salvo donde se aclara.
 
@@ -25,7 +25,7 @@ Todos supermercados online, salvo donde se aclara.
 * [Vea Digital](http://veadigital.com.ar/)
 * [Walmart Online](http://walmartonline.com.ar/)
 
-## Requerimientos previos
+## Requerimientos
 
 * Git
 * Python
@@ -37,7 +37,7 @@ Todos supermercados online, salvo donde se aclara.
   pip install virtualenv
   ```
 
-## Instalación
+## Instalación
 
 * Cloná este repositorio
 
@@ -64,9 +64,9 @@ Todos supermercados online, salvo donde se aclara.
   pip install -r requirements.txt
   ```
 
-## Uso
+## Uso
 
-Para bajar precios de, por ejemplo, Coto Digital a un archivo separado por comas (_.csv_).
+Un ejemplo: para scrapear precios de Coto Digital a un archivo separado por comas (_.csv_).
 
 ```sh
 # Si no tenés activado el entorno virtual...
@@ -78,8 +78,8 @@ scrapy crawl coto_articles -o ../coto.csv
 ```
 
 
-## Colaboraciones, a voluntad
+## Colaboraciones, a voluntad
 Cualquier mejora o correción va a ser muy bienvenida. Para eso:
-  * Hacé un fork de este repo.
-  * Hacé commits (en tu repo) con los cambios.
-  * Mandame un Pull Request con los cambios, explicando qué cambiaste o agregaste.
+  1. Hacé un fork de este repo.
+  2. Hacé commits (en tu repo) con los cambios.
+  3. Mandame un Pull Request con los cambios explicando qué cambiaste o agregaste.
